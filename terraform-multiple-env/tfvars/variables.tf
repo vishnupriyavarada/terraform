@@ -3,11 +3,17 @@ variable "ami_id" {
   default     = "ami-09c813fb71547fc4f"
   description = "This is RHEL9 AMI ID"
 }
+
+variable "project" {
+  type    = string
+  default = "expense"
+}
+
 variable "environment" {
   # value is not given here. value is given under dev.tfvars
 }
 variable "instances" {
-    default =  ["mysql","backend","frontend"]
+  default = ["mysql", "backend", "frontend"]
 }
 
 variable "instance_type" {
@@ -30,8 +36,8 @@ variable "ec2_tags" {
 variable "comman_tags" {
   type = map(any)
   default = {
-    Project     = "expense"
-    Environment = "dev"
+    Project   = "expense"
+    Terraform = "true"
   }
 }
 //------------------------ Rout 53 - start ----------------------------
@@ -47,6 +53,7 @@ variable "domain_name" {
 //------------------------ Rout 53 - end ------------------------------
 
 //------------------------- Security group - start --------------------
+
 variable "from_port" {
   type    = number
   default = 22
@@ -67,6 +74,8 @@ variable "sg-tags" {
   default = {
     Name = "allow_tls"
   }
-
+}
+variable "ingress_var" {
+  type = list(any)
 }
 //------------------------- Security group - end --------------------

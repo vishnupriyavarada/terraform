@@ -15,8 +15,15 @@ resource "aws_security_group" "allow_tls" {
     to_port     = 22 # End range port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-
   }
+  
+    ingress {
+    from_port   = 80 # Start port
+    to_port     = 80 # End range port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
 
   tags = {
     Name = "allow_tls"
